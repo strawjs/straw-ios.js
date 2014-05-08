@@ -1,4 +1,7 @@
+# Straw
+
+> Straw, the simpler native-JS bridge :tropical_drink:
+
 # straw-ios.js
 
-> Straw, the simpler native-js bridge
-> straw-ios.js - js interface for iOS version
+> JS interface for iOS bridge
