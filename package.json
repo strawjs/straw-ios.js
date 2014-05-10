@@ -1,0 +1,20 @@
+{
+  "name": "straw-ios.js",
+  "version": "0.0.0",
+  "description": "Straw, the simpler native-js bridge | JS interface for iOS bridge",
+  "main": "straw-ios.js",
+  "scripts": {
+    "test": "gulp"
+  },
+  "keywords": [
+    "straw",
+    "native",
+    "bridge"
+  ],
+  "author": "Yoshiya Hinosawa <stibium121@gmail.com> (https://twitter.com/kt3k)",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "~3.6.2",
+    "gulp-jshint": "~1.5.5"
+  }
+}
