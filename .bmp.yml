@@ -1,4 +1,5 @@
-version: 0.0.0
+---
+version: 0.0.2
 files:
   README.md: straw-ios.js v%.%.%
-  package.json: '"version" = "%.%.%"'
+  package.json: ! '"version": "%.%.%"'
