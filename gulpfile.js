@@ -31,4 +31,4 @@ gulp.task('test', function () {
 
 });
 
-gulp.task('default', ['lint']);
+gulp.task('default', ['lint', 'test']);
