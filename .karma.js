@@ -15,8 +15,15 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      // helpers
+      'node_modules/chai/chai.js',
+
+      // source
       'straw-ios.js',
+
+      // test
       'straw-ios-spec.js',
+
     ],
 
 

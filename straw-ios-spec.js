@@ -1,8 +1,12 @@
 
-describe('sample', function () {
-    describe('method', function () {
-        it('should be true', function () {
+var expect = chai.expect;
 
-        });
+describe('straw', function () {
+
+    it('exists', function () {
+
+        expect(straw).not.to.equal(null);
+
     });
+
 });
