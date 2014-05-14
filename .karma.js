@@ -17,6 +17,7 @@ module.exports = function(config) {
     files: [
       // helpers
       'node_modules/chai/chai.js',
+      '.sinon-1.9.1.js',
 
       // source
       'straw-ios.js',

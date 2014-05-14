@@ -1,6 +1,6 @@
 // straw-ios-spec.js
 
-/* global describe, chai, it, straw */
+/* global describe, it, chai, sinon, straw */
 
 describe('straw', function () {
     'use strict';
