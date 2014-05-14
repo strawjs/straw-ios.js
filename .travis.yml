@@ -5,4 +5,4 @@ language: node_js
 
 after_success:
 # post coverage data to coveralls.io
-- cat ./coverage/PhantomJS*/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+- cat ./.coverage/PhantomJS*/lcov.info | ./node_modules/coveralls/bin/coveralls.js
