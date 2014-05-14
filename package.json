@@ -24,6 +24,7 @@
     "chai": "~1.9.1",
     "gulp-karma": "0.0.4",
     "karma-coverage": "~0.2.1",
-    "coveralls": "~2.10.0"
+    "coveralls": "~2.10.0",
+    "karma-mocha-reporter": "~0.2.5"
   }
 }
