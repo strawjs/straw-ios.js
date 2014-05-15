@@ -1,0 +1,6 @@
+{
+    "--title": "straw-ios.js API Documentation",
+    "--output": ".docs",
+    "--warnings": "-nodoc",
+    "--": "straw-ios.js"
+}

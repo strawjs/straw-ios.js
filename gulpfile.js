@@ -43,7 +43,7 @@ gulp.task('test', function () {
 
 
 gulp.task('doc', function (cb) {
-    exec('jsduck --output .docs straw-ios.js', function (err, stdout, stderr) {
+    exec('jsduck --config=.jsduck.json', function (err, stdout, stderr) {
         console.log(stdout);
         console.log(stderr);
         cb(err);
