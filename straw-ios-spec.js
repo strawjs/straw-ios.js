@@ -2,7 +2,7 @@
 
 /* global describe, it, chai, sinon, straw */
 
-describe('straw', function () {
+describe('straw.core', function () {
     'use strict';
 
     var expect = chai.expect;
@@ -10,6 +10,7 @@ describe('straw', function () {
     it('exists', function () {
 
         expect(straw).not.to.equal(null);
+        expect(straw.core).not.to.equal(null);
 
     });
 

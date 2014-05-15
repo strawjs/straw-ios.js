@@ -157,7 +157,37 @@ this.straw = (function () {
 
     };
 
-    var exports = new Straw();
+    var straw = new Straw();
+
+    var StrawApi = function () {};
+
+    var strawApiPt = StrawApi.prototype;
+
+    strawApiPt.getRequestParams = function (callId) {
+        return straw.retrieveParams(callId);
+    };
+
+    strawApiPt.exec = function (service, method, params, successCallback, failureCallback) {
+        straw.exec(service, method, params, successCallback, failureCallback);
+    };
+
+    strawApiPt.succeed = function (callId, params) {
+        straw.nativeCallback(callId, true, params, false);
+    };
+
+    strawApiPt.fail = function (callId, params) {
+        straw.nativeCallback(callId, false, params, false);
+    };
+
+    strawApiPt.succeedAndKeepAlive = function (callId, params) {
+        straw.nativeCallback(callId, true, params, true);
+    };
+
+    strawApiPt.failAndKeepAlive = function (callId, params) {
+        straw.nativeCallback(callId, false, params, true);
+    };
+
+    var exports = {core: new StrawApi()};
 
     return exports;
 
