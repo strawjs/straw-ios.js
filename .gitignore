@@ -3,3 +3,6 @@ node_modules
 
 # coverage report
 .coverage
+
+# api doc
+.docs
