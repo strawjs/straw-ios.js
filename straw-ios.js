@@ -6,7 +6,7 @@
  *
  * @singleton
  */
-this.straw = function () {
+this.straw = {
     /**
      * @property {String} version
      * The version number
