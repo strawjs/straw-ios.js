@@ -140,11 +140,11 @@ this.straw = (function () {
     /**
      * Process callback invocation from Straw native bridge
      *
-     * @param string id the id
-     * @param boolean isSuccess is success or not
-     * @param params parameters for Service callback
-     * @param boolean keepAlive keep callback or not
-     @ @return void
+     * @param {String} id the id
+     * @param {Boolean} isSuccess is success or not
+     * @param {Object} params parameters for Service callback
+     * @param {Boolean} keepAlive keep callback or not
+     * @return {void}
      */
     strawPt.nativeCallback = function (id, isSuccess, params, keepAlive) {
 
