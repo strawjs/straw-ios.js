@@ -43,7 +43,7 @@ gulp.task('test', ['lint'], function () {
 
 
 gulp.task('doc', function (cb) {
-    exec('jsduck', function (err, stdout, stderr) {
+    exec('jsduck --config=.jsduck.json', function (err, stdout, stderr) {
         console.log(stdout);
         console.log(stderr);
         cb(err);
