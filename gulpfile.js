@@ -51,4 +51,13 @@ gulp.task('doc', function (cb) {
 });
 
 
+gulp.task('doc-release', function (cb) {
+    exec('jsduck --config=.jsduck.release.json', function (err, stdout, stderr) {
+        console.log(stdout);
+        console.log(stderr);
+        cb(err);
+    });
+});
+
+
 gulp.task('default', ['lint', 'test']);
