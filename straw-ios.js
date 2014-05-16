@@ -300,6 +300,7 @@ straw.core = (function () {
      *
      * @param {String} callId the Service call id
      * @param {Object} params the parameter object which contains code and message fields
+     * @param {Boolean} keepAlive if true then keep the callback, otherwise drop it
      * @return {void}
      */
     strawApiPt.succeed = function (callId, params, keepAlive) {
@@ -313,6 +314,7 @@ straw.core = (function () {
      *
      * @param {String} callId the Service call id
      * @param {Object} params the parameter object which contains code and message fields
+     * @param {Boolean} keepAlive if true then keep the callback, otherwise drop it
      * @return {void}
      */
     strawApiPt.fail = function (callId, params, keepAlive) {
