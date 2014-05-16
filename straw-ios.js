@@ -6,7 +6,7 @@
  *
  * @singleton
  */
-this.straw = {
+var straw = {
     /**
      * @property {String} version
      * The version number
@@ -25,6 +25,10 @@ straw.core = (function () {
 
     /**
      * @class CallbackPair
+     *
+     * CallbackPair class represents the pair of success callback and failure callback.
+     *
+     * @private
      */
     var CallbackPair = function (id, successCallback, failureCallback) {
 
@@ -42,6 +46,11 @@ straw.core = (function () {
 
     /**
      * @method
+     * Call the appropriate callback function according to the given success flag.
+     *
+     * @param {Boolean} isSuccess the callback result is success or not
+     * @param {Object} params the parameters
+     * @return {void}
      */
     callbackPairPt.call = function (isSuccess, params) {
 
@@ -63,14 +72,23 @@ straw.core = (function () {
 
     /**
      * @class StrawCore
+     * StrawCore class provides core bridging functionality of Straw Framework.
+     *
+     * @private
      */
     var StrawCore = function () {
 
-        // table of callbacks
+        /**
+         * @property
+         * table of callbacks
+         */
         this.cbTable = {};
 
-        // table of Service call parameters
-        this.paramsTable = {};
+        /**
+         * @property
+         * table of Service call parameters
+         */
+        this.pTable = {};
 
     };
 
@@ -78,6 +96,14 @@ straw.core = (function () {
 
     /**
      * @method
+     * Execute Straw Service Call through native bridging mechanism.
+     *
+     * @param {String} service the service name
+     * @param {String} method the method name
+     * @param {Object} params the parameters
+     * @param {Function} successCallback the callback for success
+     * @param {Function} failureCallback the callback for failure
+     * @return {String} the id of the created Straw Service Call
      */
     strawCorePt.exec = function (service, method, params, successCallback, failureCallback) {
 
@@ -92,24 +118,41 @@ straw.core = (function () {
         this.storeParams(requestParams);
 
         this.invokeNativeBridge(id);
+
+        return id;
     };
+
 
     /**
      * @method
+     * Invoke native bridge.
+     *
+     * @param {String} id the id to call
+     * @return {void}
      */
     strawCorePt.invokeNativeBridge = function (id) {
         location.href = this.generateStrawCallUrl(id);
     };
 
+
     /**
      * @method
+     * Generate a custom url for Straw Service Call.
+     *
+     * @param {String} id the id of the call
+     * @return {String} the custom scheme url for Straw Service Call
      */
     strawCorePt.generateStrawCallUrl = function (id) {
         return 'straw://' + id;
     };
 
+
     /**
      * @method
+     * Store the callback to the callback table
+     *
+     * @param {CallbackPair} callback the callback to store
+     * @return {void}
      */
     strawCorePt.storeCallback = function (callback) {
 
@@ -120,12 +163,14 @@ straw.core = (function () {
         this.cbTable[callback.id] = callback;
     };
 
+
     /**
+     * @method
      * Retrieve callback object from the callback table.
      *
-     * @param {string} id callback id
-     * @param {boolean} keepAlive keep callback or not
-     * @return CallbackPair retrieved callback or undefined if not found
+     * @param {String} id callback id
+     * @param {Boolean} keepAlive keep callback or not
+     * @return {CallbackPair} retrieved callback or undefined if not found
      */
     strawCorePt.retriveCallback = function (id, keepAlive) {
         var callback = this.cbTable[id];
@@ -142,8 +187,13 @@ straw.core = (function () {
         return callback;
     };
 
+
     /**
      * @method
+     * Store Straw Request parameters.
+     *
+     * @param {Object} params the parameters to store
+     * @return {void}
      */
     strawCorePt.storeParams = function (params) {
 
@@ -155,8 +205,13 @@ straw.core = (function () {
 
     };
 
+
     /**
      * @method
+     * Retrieve the parameters for the Straw Request.
+     *
+     * @param {String} id the id of Straw Request
+     * @return {Object} the parameter of the Straw Request
      */
     strawCorePt.retriveParams = function (id) {
         var params = this.pTable[id];
@@ -172,9 +227,12 @@ straw.core = (function () {
         return params;
     };
 
+
     /**
      * @method
-     * Process callback invocation from Straw native bridge
+     * Perform callback invocation.
+     *
+     * This method handles the result of Native Service Method process and invoke the appropriate callback.
      *
      * @param {String} id the id
      * @param {Boolean} isSuccess is success or not
@@ -194,6 +252,7 @@ straw.core = (function () {
     };
 
     var strawCore = new StrawCore();
+
 
     /**
      * @class straw.core
@@ -218,9 +277,10 @@ straw.core = (function () {
         return strawCore.retrieveParams(callId);
     };
 
+
     /**
      * @method
-     * Call a Straw service method.
+     * Call a Straw Service.
      *
      * @param {String} service the service name
      * @param {String} method the method name
@@ -229,57 +289,36 @@ straw.core = (function () {
      * @param {Function} failureCallback the failure callback
      * @return {void}
      */
-    strawApiPt.callServiceMethod = function (service, method, params, successCallback, failureCallback) {
+    strawApiPt.serviceCall = function (service, method, params, successCallback, failureCallback) {
         strawCore.exec(service, method, params, successCallback, failureCallback);
     };
 
-    /**
-     * @method
-     * Succeed service call and don't keep a callback function.
-     *
-     * @param {String} callId the Service call id
-     * @param {Object} params the parameter object which contains code and message fields
-     * @return {void}
-     */
-    strawApiPt.succeed = function (callId, params) {
-        strawCore.nativeCallback(callId, true, params, false);
-    };
 
     /**
      * @method
-     * Fail service call and don't keep a callback function.
+     * Succeed service call.
      *
      * @param {String} callId the Service call id
      * @param {Object} params the parameter object which contains code and message fields
      * @return {void}
      */
-    strawApiPt.fail = function (callId, params) {
-        strawCore.nativeCallback(callId, false, params, false);
+    strawApiPt.succeed = function (callId, params, keepAlive) {
+        strawCore.nativeCallback(callId, true, params, keepAlive);
     };
+
 
     /**
      * @method
-     * Succeed service call and keep a callback function.
+     * Fail service call.
      *
      * @param {String} callId the Service call id
      * @param {Object} params the parameter object which contains code and message fields
      * @return {void}
      */
-    strawApiPt.succeedAndKeepAlive = function (callId, params) {
-        strawCore.nativeCallback(callId, true, params, true);
+    strawApiPt.fail = function (callId, params, keepAlive) {
+        strawCore.nativeCallback(callId, false, params, keepAlive);
     };
 
-    /**
-     * @method
-     * Fail service call and keep a callback function.
-     *
-     * @param {String} callId the Service call id
-     * @param {Object} params the parameter object which contains code and message fields
-     * @return {void}
-     */
-    strawApiPt.failAndKeepAlive = function (callId, params) {
-        strawCore.nativeCallback(callId, false, params, true);
-    };
 
     var exports = new StrawApi();
 
