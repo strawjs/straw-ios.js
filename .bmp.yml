@@ -1,7 +1,9 @@
 ---
 version: 0.1.0
 files:
-  README.md: straw-ios.js v%.%.%
+  README.md:
+    - straw-ios.js v%.%.%
+    - doc/v%.%.%
   package.json: ! '"version": "%.%.%"'
   straw-ios.js: ! 'version: ''v%.%.%'''
   .jsduck.release.json: ! '"doc/v0.1.0"'
