@@ -26,7 +26,7 @@ gulp.task('lint', function () {
 /**
  * Run test using karma and output code coverage
  */
-gulp.task('test', function () {
+gulp.task('test', ['lint'], function () {
 
     return gulp.src(testFiles).pipe(karma({
 
