@@ -287,10 +287,10 @@ straw.core = (function () {
      * @param {Object} params the parameter
      * @param {Function} successCallback the success callback
      * @param {Function} failureCallback the failure callback
-     * @return {void}
+     * @return {String} the id of the created Service call
      */
     strawApiPt.serviceCall = function (service, method, params, successCallback, failureCallback) {
-        strawCore.exec(service, method, params, successCallback, failureCallback);
+        return strawCore.exec(service, method, params, successCallback, failureCallback);
     };
 
 
