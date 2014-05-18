@@ -90,6 +90,12 @@ straw.core = (function () {
          */
         this.pTable = {};
 
+        /**
+         * @property
+         * local copy of window.location
+         */
+        this.location = window.location;
+
     };
 
     var strawCorePt = StrawCore.prototype;
@@ -131,7 +137,7 @@ straw.core = (function () {
      * @return {void}
      */
     strawCorePt.invokeNativeBridge = function (id) {
-        location.href = this.generateStrawCallUrl(id);
+        this.location.href = this.generateStrawCallUrl(id);
     };
 
 
@@ -319,6 +325,19 @@ straw.core = (function () {
      */
     strawApiPt.fail = function (callId, params, keepAlive) {
         strawCore.nativeCallback(callId, false, params, keepAlive);
+    };
+
+
+    /**
+     * @method
+     * Set location object in (private) StrawCore object
+     *
+     * This method is only for test.
+     *
+     * @param {Location} location object
+     */
+    strawApiPt.setLocation = function (location) {
+        strawCore.location = location;
     };
 
 
