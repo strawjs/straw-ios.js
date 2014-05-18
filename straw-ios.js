@@ -56,13 +56,13 @@ straw.core = (function () {
 
         if (isSuccess) {
 
-            if (this.successCallbck === 'function') {
+            if (typeof this.successCallback === 'function') {
                 this.successCallback.call(null, params);
             }
 
         } else {
 
-            if (this.failureCallbck === 'function') {
+            if (typeof this.failureCallback === 'function') {
                 this.failureCallback.call(null, params);
             }
 
@@ -252,7 +252,7 @@ straw.core = (function () {
 
         if (callback != null) {
 
-            callback.call(params);
+            callback.call(isSuccess, params);
         }
 
     };
