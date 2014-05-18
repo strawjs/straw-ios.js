@@ -76,6 +76,77 @@ describe('straw.core', function () {
 
         });
 
+        it('does nothing without error if callback is not registered', function () {
+
+            // create a service call
+            var callId = straw.core.serviceCall('serviceX', 'methodY', {});
+
+            // succeed the service call
+            straw.core.succeed(callId, {value: 1}, true);
+
+        });
+
+        it('does nothing without error if callback is not a function', function () {
+
+            // create a service call
+            var callId = straw.core.serviceCall('serviceX', 'methodY', {}, 'bogus callback');
+
+            // succeed the service call
+            straw.core.succeed(callId, {value: 1}, true);
+
+        });
+
+        describe('with keepAlive', function () {
+
+            it('keeps the callback and can invoke the same callback multiple times', function () {
+
+                // create a mock callback
+                var successCallback = sinon.mock();
+
+                // set expectations
+                successCallback.thrice();
+
+                // create a service call
+                var callId = straw.core.serviceCall('serviceX', 'methodY', {}, successCallback);
+
+                // succeed the service call
+                straw.core.succeed(callId, {value: 3}, true);
+                straw.core.succeed(callId, {value: 5}, true);
+                straw.core.succeed(callId, {value: 8}, true);
+
+                // verify the expectations
+                successCallback.verify();
+
+            });
+
+        });
+
+        describe('without keepAlive', function () {
+
+            it('drops the callback and cannot invoke the same callback twice', function () {
+
+                // create a mock callback
+                var successCallback = sinon.mock();
+
+                // set expectations
+                successCallback.once();
+
+                // create a service call
+                var callId = straw.core.serviceCall('serviceX', 'methodY', {}, successCallback);
+
+                // succeed the service call with keepAlive false
+                straw.core.succeed(callId, {value: 3}, false);
+
+                // succeed the same call id but these should be meaningless
+                straw.core.succeed(callId, {value: 5}, true);
+                straw.core.succeed(callId, {value: 8}, false);
+
+                // verify the expectations
+                successCallback.verify();
+
+            });
+        });
+
     });
 
 
@@ -97,6 +168,16 @@ describe('straw.core', function () {
 
             // verify the expectations
             failureCallback.verify();
+
+        });
+
+        it('does nothing without error if callback is not a function', function () {
+
+            // create a service call
+            var callId = straw.core.serviceCall('serviceX', 'methodY', {}, null, 'bogus callback');
+
+            // fail the service call
+            straw.core.fail(callId, {value: 1}, true);
 
         });
 
