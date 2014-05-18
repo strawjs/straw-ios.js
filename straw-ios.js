@@ -172,7 +172,7 @@ straw.core = (function () {
      * @param {Boolean} keepAlive keep callback or not
      * @return {CallbackPair} retrieved callback or undefined if not found
      */
-    strawCorePt.retriveCallback = function (id, keepAlive) {
+    strawCorePt.retrieveCallback = function (id, keepAlive) {
         var callback = this.cbTable[id];
 
         if (callback == null) {
@@ -213,7 +213,7 @@ straw.core = (function () {
      * @param {String} id the id of Straw Request
      * @return {Object} the parameter of the Straw Request
      */
-    strawCorePt.retriveParams = function (id) {
+    strawCorePt.retrieveParams = function (id) {
         var params = this.pTable[id];
 
         if (!params) {
