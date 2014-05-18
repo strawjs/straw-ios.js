@@ -209,10 +209,6 @@ straw.core = (function () {
      */
     strawCorePt.storeParams = function (params) {
 
-        if (params == null || params.callId == null) {
-            return;
-        }
-
         this.pTable[params.callId] = params;
 
     };
