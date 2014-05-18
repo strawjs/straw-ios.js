@@ -7,15 +7,23 @@ describe('straw.core', function () {
 
     var expect = chai.expect;
 
+    var console;
+
     before(function () {
         // inject dummy location object to prevent an actual page reload.
         straw.core.setLocation({});
+
+        // create console mock
+        console = {log: sinon.mock()};
+
+        // inject mock console object
+        straw.core.setConsole(console);
     });
 
     it('is an object', function () {
 
-        expect(straw).not.to.equal(null);
-        expect(straw.core).not.to.equal(null);
+        expect(straw).to.exist;
+        expect(straw.core).to.exist;
         expect(straw.core).to.be.a('object');
 
     });
@@ -50,6 +58,25 @@ describe('straw.core', function () {
                 callId: callId
             });
 
+        });
+
+        it('returns nothing when called twice and warn message', function () {
+
+            // create a service call
+            var callId = straw.core.serviceCall('srv_x', 'meth_y', {abc: 123});
+
+            // set expectation for logging
+            console.log.once().withArgs('[Warn] param for id=' + callId + ' not found');
+
+            // discard the first call result
+            straw.core.getRequestParams(callId);
+
+            // the second call
+            var params = straw.core.getRequestParams(callId);
+
+            expect(params).not.to.exist;
+
+            console.log.verify();
         });
 
     });

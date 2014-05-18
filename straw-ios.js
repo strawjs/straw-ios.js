@@ -96,6 +96,12 @@ straw.core = (function () {
          */
         this.location = window.location;
 
+        /**
+         * @property
+         * local copy of window.console
+         */
+        this.console = window.console;
+
     };
 
     var strawCorePt = StrawCore.prototype;
@@ -223,7 +229,7 @@ straw.core = (function () {
         var params = this.pTable[id];
 
         if (!params) {
-            window.console.log('[Warn] param for id=' + id + ' not found');
+            this.console.log('[Warn] param for id=' + id + ' not found');
 
             return;
         }
@@ -330,14 +336,26 @@ straw.core = (function () {
 
     /**
      * @method
-     * Set location object in (private) StrawCore object
+     * Set location object for strawCore
      *
-     * This method is only for test.
+     * This method is used only for test.
      *
-     * @param {Location} location object
+     * @param {Location} location location object
      */
     strawApiPt.setLocation = function (location) {
         strawCore.location = location;
+    };
+
+    /**
+     * @method
+     * Set console object for strawCore
+     *
+     * This method is used only for test.
+     *
+     * @param {Console} console console object
+     */
+    strawApiPt.setConsole = function (console) {
+        strawCore.console = console;
     };
 
 
