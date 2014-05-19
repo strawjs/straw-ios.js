@@ -9,4 +9,4 @@ Straw :tropical_drink: the simpler native-JS bridge
 
 > JS interface for iOS bridge
 
-# [API Documentation](https://strawjs.github.io/straw-ios.js/doc/v0.1.0/index.html)
+# [API Documentation](https://strawjs.github.io/straw-ios.js/doc/v0.1.0/index.html#!/api/straw.core)
