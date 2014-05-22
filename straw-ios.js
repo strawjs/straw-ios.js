@@ -336,7 +336,9 @@ straw.core = (function () {
      *
      * This method is used only for test.
      *
-     * @param {Location} location location object
+     * @private
+     *
+     * @param {Object} location location object
      */
     strawApiPt.setLocation = function (location) {
         strawCore.location = location;
@@ -348,7 +350,9 @@ straw.core = (function () {
      *
      * This method is used only for test.
      *
-     * @param {Console} console console object
+     * @private
+     *
+     * @param {Object} console console object
      */
     strawApiPt.setConsole = function (console) {
         strawCore.console = console;

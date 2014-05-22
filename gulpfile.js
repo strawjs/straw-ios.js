@@ -41,22 +41,28 @@ gulp.task('test', ['lint'], function () {
 
 });
 
+var execCallback = function (callback) {
+    return function (error, stdout, stderr) {
+        if (stdout) {
+            console.log(stdout);
+        }
+
+        if (stderr) {
+            console.log(stderr);
+        }
+
+        callback(error);
+    };
+};
+
 
 gulp.task('doc', function (cb) {
-    exec('jsduck --config=.jsduck.json', function (err, stdout, stderr) {
-        console.log(stdout);
-        console.log(stderr);
-        cb(err);
-    });
+    exec('jsduck --config=.jsduck.json', execCallback(cb));
 });
 
 
 gulp.task('doc-release', function (cb) {
-    exec('jsduck --config=.jsduck.release.json', function (err, stdout, stderr) {
-        console.log(stdout);
-        console.log(stderr);
-        cb(err);
-    });
+    exec('jsduck --config=.jsduck.release.json', execCallback(cb));
 });
 
 
