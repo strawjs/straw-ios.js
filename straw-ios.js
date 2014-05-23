@@ -11,7 +11,7 @@ var straw = {
      * @property {String} version
      * The version number
      */
-    version: 'v0.3.0'
+    version: 'v0.3.1'
 };
 
 straw.core = (function () {
