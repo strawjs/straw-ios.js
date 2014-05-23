@@ -1,0 +1,23 @@
+{
+  "name": "straw-ios.js",
+  "main": "straw-ios.js",
+  "version": "0.2.1",
+  "authors": [
+    "Yoshiya Hinosawa <stibium121@gmail.com>"
+  ],
+  "description": "Straw, the simpler native-js bridge | JS interface for iOS bridge",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "straw",
+    "native-bridge",
+    "smartphone",
+    "ios"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/strawjs/straw-ios.js",
+  "ignore": [
+    "!straw-ios.js"
+  ]
+}
