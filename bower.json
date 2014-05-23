@@ -18,6 +18,10 @@
   "license": "MIT",
   "homepage": "https://github.com/strawjs/straw-ios.js",
   "ignore": [
-    "*!(straw-ios.js)"
+    "**/.*",
+    "*spec.js",
+    "gulpfile.js",
+    "doc",
+    "package.json"
   ]
 }
