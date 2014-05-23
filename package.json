@@ -1,6 +1,6 @@
 {
   "name": "straw-ios.js",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Straw, the simpler native-js bridge | JS interface for iOS bridge",
   "repository": "https://github.com/strawjs/straw-ios.js.git",
   "main": "straw-ios.js",
