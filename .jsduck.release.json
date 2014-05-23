@@ -1,6 +1,6 @@
 {
     "--title": "straw-ios.js API Documentation",
-    "--output": "doc/v0.3.3",
+    "--output": "doc/v0.3.4",
     "--warnings": "-nodoc",
     "--": "straw-ios.js"
 }
