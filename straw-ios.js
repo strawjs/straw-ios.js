@@ -14,7 +14,7 @@ var straw = {
     version: 'v0.3.4'
 };
 
-straw.core = (function () {
+straw.core = (function (window) {
     'use strict';
 
     var currentId = Math.floor(Math.random() * 10000000);
@@ -92,12 +92,6 @@ straw.core = (function () {
 
         /**
          * @property
-         * local copy of window.location
-         */
-        this.location = window.location;
-
-        /**
-         * @property
          * local copy of window.console
          */
         this.console = window.console;
@@ -143,7 +137,18 @@ straw.core = (function () {
      * @return {void}
      */
     strawCorePt.invokeNativeBridge = function (id) {
-        this.location.href = this.generateStrawCallUrl(id);
+
+        var iframe = window.document.createElement('iframe');
+
+        // set straw url
+        iframe.setAttribute('src', this.generateStrawCallUrl(id));
+
+        // append it to document element to invoke -webView:shouldStartLoadWithRequest:navigationType: of STWWebViewDelegate
+        window.document.documentElement.appendChild(iframe);
+
+        // remove iframe from main dom tree
+        iframe.parentNode.removeChild(iframe);
+
     };
 
 
@@ -332,20 +337,6 @@ straw.core = (function () {
 
     /**
      * @method
-     * Set location object for strawCore
-     *
-     * This method is used only for test.
-     *
-     * @private
-     *
-     * @param {Object} location location object
-     */
-    strawApiPt.setLocation = function (location) {
-        strawCore.location = location;
-    };
-
-    /**
-     * @method
      * Set console object for strawCore
      *
      * This method is used only for test.
@@ -363,7 +354,7 @@ straw.core = (function () {
 
     return exports;
 
-}());
+}(window));
 
 
 /**

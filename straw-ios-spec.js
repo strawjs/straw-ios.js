@@ -10,8 +10,6 @@ describe('straw.core', function () {
     var console;
 
     before(function () {
-        // inject dummy location object to prevent an actual page reload.
-        straw.core.setLocation({});
 
         // create console mock
         console = {log: sinon.mock()};
@@ -30,15 +28,24 @@ describe('straw.core', function () {
 
     describe('serviceCall', function () {
 
-        it('puts a custom url to location.href for the Straw Service call', function () {
+        it('puts a custom url to iframe for the Straw Service call', function () {
 
-            var location = {};
-
-            straw.core.setLocation(location);
+            sinon.spy(window.document.documentElement, 'appendChild');
 
             var callId = straw.core.serviceCall('serviceX', 'methodY', {abc: 123});
 
-            expect(location.href).to.equal('straw://' + callId);
+            expect(window.document.documentElement.appendChild.calledOnce).to.be.true;
+
+            var call = window.document.documentElement.appendChild.getCall(0);
+
+            expect(call.args[0]).to.exist;
+
+            expect(call.args[0]).to.be.instanceof(HTMLIFrameElement);
+
+            expect(call.args[0].getAttribute('src')).to.equal('straw://' + callId);
+
+            window.document.documentElement.appendChild.restore();
+
         });
     });
 
