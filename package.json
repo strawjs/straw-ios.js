@@ -6,7 +6,8 @@
   "main": "straw-ios.js",
   "scripts": {
     "test": "gulp",
-    "doc-release": "jsduck --config .jsduck.release.json"
+    "doc-release": "jsduck --config .jsduck.release.json",
+    "release": "bower register straw-ios https://github.com/strawjs/straw-ios.js.git"
   },
   "keywords": [
     "straw",
