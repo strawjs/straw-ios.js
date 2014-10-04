@@ -1,10 +1,10 @@
 ---
-version: 0.3.4
+version: 0.3.5
 files:
   README.md:
   - straw-ios.js v%.%.%
   - doc/v%.%.%
-  package.json: ! '"version": "%.%.%"'
-  bower.json: ! '"version": "%.%.%"'
-  straw-ios.js: ! 'version: ''v%.%.%'''
-  .jsduck.release.json: ! '"doc/v%.%.%"'
+  package.json: '"version": "%.%.%"'
+  bower.json: '"version": "%.%.%"'
+  straw-ios.js: 'version: ''v%.%.%'''
+  ".jsduck.release.json": '"doc/v%.%.%"'
